@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert'; // For JSON processing
 import 'package:http/http.dart' as http; // For HTTP requests
 import '../components/search_box.dart';
+import '../menu_detail_page/menu_detail_page.dart';
 
 class BugPage extends StatefulWidget {
   const BugPage({Key? key}) : super(key: key);
@@ -22,13 +23,26 @@ class _BugPageState extends State<BugPage> {
 
   Future<void> fetchProducts() async {
     try {
-      var response = await http.get(Uri.parse('http://13.125.255.90:8080/api/product-list/insect'));
+      var response = await http
+          .get(Uri.parse('http://13.125.255.90:8080/api/product-list/insect'));
+      print('Response body: ${response.body}');
+
       if (response.statusCode == 200) {
+        List<dynamic> productList = json.decode(utf8.decode(response.bodyBytes));
         setState(() {
-          products = json.decode(utf8.decode(response.bodyBytes));
+          products = productList.map((product) {
+            return {
+              'productId': product['productId'], // 각 상품의 productId를 가져옴
+              'productName': product['productName'],
+              'productImage': product['productImage'],
+              'price': product['price'],
+              'reviewScoreAvg': product['reviewScoreAvg'],
+            };
+          }).toList();
         });
       } else {
-        throw Exception('Failed to load insect products with status: ${response.statusCode}');
+        throw Exception(
+            'Failed to load insect products with status: ${response.statusCode}');
       }
     } catch (e) {
       print('Error fetching insect products: $e');
@@ -46,7 +60,9 @@ class _BugPageState extends State<BugPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Insect', style: TextStyle(fontSize: 20, fontFamily: 'mainfont', color: Colors.black)),
+            const Text('Insect',
+                style: TextStyle(
+                    fontSize: 20, fontFamily: 'mainfont', color: Colors.black)),
             Container(
               height: 35,
               child: Image.asset('assets/images/bug.png'),
@@ -69,49 +85,77 @@ class _BugPageState extends State<BugPage> {
             SearchBox(controller: _searchController),
             products.isNotEmpty
                 ? GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, // 한 줄에 3개의 제품을 표시합니다.
-                childAspectRatio: 1 / 1.5, // 각 그리드 아이템의 가로 세로 비율
-              ),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(), // 스크롤을 비활성화합니다.
-              itemCount: products.length,
-              itemBuilder: (BuildContext context, int index) {
-                var product = products[index];
-                return Card(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Image.network(
-                          product['productImage'] as String? ?? 'assets/default.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            product['productName'] as String? ?? 'Unknown Product',
-                            style: const TextStyle(fontFamily: 'subfont',fontSize: 16),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3, // 한 줄에 3개의 제품을 표시합니다.
+                      childAspectRatio: 1 / 1.5, // 각 그리드 아이템의 가로 세로 비율
+                    ),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    // 스크롤을 비활성화합니다.
+                    itemCount: products.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MenuPage(productId: product['productId']),
+                            ),
+                          );
+                        },
+                        child: Card(
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Image.network(
+                                    product['productImage'] as String? ??
+                                        'assets/default.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      product['productName'] as String? ??
+                                          'Unknown Product',
+                                      style: const TextStyle(
+                                          fontFamily: 'subfont', fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                        '\₩${(product['price'] as num? ?? 0).toString()}',
+                                        style: TextStyle(
+                                            fontFamily: 'subfont',
+                                            fontSize: 13)),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '⭐ ${(product['reviewScoreAvg'] as num? ?? 0).toString()}',
+                                      style: TextStyle(
+                                          fontFamily: 'subfont', fontSize: 13),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text('\₩${(product['price'] as num? ?? 0).toString()}',style: TextStyle(fontFamily: 'subfont',fontSize: 13)),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text('⭐ ${(product['reviewScoreAvg'] as num? ?? 0).toString()}',style: TextStyle(fontFamily: 'subfont',fontSize: 13),),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
-            )
+                        ),
+                      );
+                    },
+                  )
                 : const Center(child: CircularProgressIndicator()),
           ],
         ),
