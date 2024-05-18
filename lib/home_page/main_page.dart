@@ -1,9 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zzero/category_page/bug_page.dart';
 import 'package:zzero/category_page/category_page.dart';
 import 'package:zzero/category_page/cheese_page.dart';
+import 'package:zzero/category_page/cow_page.dart';
+import 'package:zzero/category_page/fish_page.dart';
+import 'package:zzero/category_page/pig_page.dart';
 import 'package:zzero/components/Image_Slide.dart';
 import 'package:zzero/components/search_box.dart';
+import 'package:zzero/game_page/grow_cow.dart';
+import '../category_page/chicken_page.dart';
+import '../category_page/dairy_page.dart';
+import '../category_page/protein_page.dart';
 import '../components/category_tile.dart';
 
 class MainPage extends StatefulWidget {
@@ -103,9 +111,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage(
-                                  sorting: '아이스크림',
-                                )), //페이지 라우팅 해주기
+                            builder: (context) => DairyPage()),
                       );
                     },
                   ),
@@ -116,9 +122,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage(
-                                  sorting: '초콜릿',
-                                )), //페이지 라우팅 해주기
+                            builder: (context) => ProteinPage()),
                       );
                     },
                   ),
@@ -129,9 +133,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage(
-                                  sorting: '젤리/사탕',
-                                )), //페이지 라우팅 해주기
+                            builder: (context) => BugPage()),
                       );
                     },
                   ),
@@ -142,9 +144,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage(
-                                  sorting: '과자',
-                                )),
+                            builder: (context) => ChickenPage()),
                       );
                     },
                   ),
@@ -155,9 +155,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage(
-                                  sorting: '빵',
-                                )), //페이지 라우팅 해주기
+                            builder: (context) => BeefPage()),
                       );
                     },
                   ),
@@ -168,9 +166,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage(
-                                  sorting: '술',
-                                )), //페이지 라우팅 해주기
+                            builder: (context) => PorkPage()),
                       );
                     },
                   ),
@@ -181,9 +177,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage(
-                                  sorting: '기타식품',
-                                )), //페이지 라우팅 해주기
+                            builder: (context) => SeafoodPage()),
                       );
                     },
                   ),
@@ -331,6 +325,16 @@ class _MainPageState extends State<MainPage> {
               SizedBox(height: 10)
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context)=>GrowCow())
+            );
+          },
+          child: Icon(Icons.pets),  // 아이콘은 원하는 것으로 변경 가능
+          backgroundColor: Colors.green,
         ),
       ),
     );

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http; // For HTTP requests
 import '../components/search_box.dart';
 
 class CheesePage extends StatefulWidget {
-  const CheesePage({super.key});
+  const CheesePage({Key? key}) : super(key: key);
 
   @override
   State<CheesePage> createState() => _CheesePageState();
@@ -22,15 +22,17 @@ class _CheesePageState extends State<CheesePage> {
   }
 
   Future<void> fetchProducts() async {
-    // Placeholder for fetching data
-    var response = await http.get(Uri.parse('your-api-url'));
-    if (response.statusCode == 200) {
-      setState(() {
-        products = json.decode(response.body);
-      });
-    } else {
-      // Handle error
-      print('Failed to load products');
+    try {
+      var response = await http.get(Uri.parse('http://13.125.255.90:8080/api/product-list/cheese'));
+      if (response.statusCode == 200) {
+        setState(() {
+          products = json.decode(response.body);
+        });
+      } else {
+        throw Exception('Failed to load cheese products with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching cheese products: $e');
     }
   }
 
@@ -45,12 +47,14 @@ class _CheesePageState extends State<CheesePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('치즈'),
-            Container(height: 35, child: Image.asset('assets/images/cheese.png')),
+            const Text('Cheese', style: TextStyle(fontSize: 20, fontFamily: 'mainfont', color: Colors.black)),
+            Container(
+              height: 35,
+              child: Image.asset('assets/images/cheese.png'),
+            ),
             const SizedBox(width: 23),
           ],
         ),
-        titleTextStyle: const TextStyle(fontSize: 20, fontFamily: 'mainfont', color: Colors.black),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(1.0),
           child: Container(
@@ -67,11 +71,11 @@ class _CheesePageState extends State<CheesePage> {
             products.isNotEmpty
                 ? GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 1 / 1.5,
+                crossAxisCount: 3, // 한 줄에 3개의 제품을 표시합니다.
+                childAspectRatio: 1 / 1.5, // 각 그리드 아이템의 가로 세로 비율
               ),
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(), // 스크롤을 비활성화합니다.
               itemCount: products.length,
               itemBuilder: (BuildContext context, int index) {
                 var product = products[index];
@@ -80,11 +84,17 @@ class _CheesePageState extends State<CheesePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: Image.network(product['productImage'], fit: BoxFit.cover),
+                        child: Image.network(
+                          product['productImage'] as String? ?? 'assets/default.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      Text(product['productName'], style: const TextStyle(fontSize: 16)),
-                      Text('\₩${product['price'].toString()}'),
-                      Text('⭐ ${product['reviewScoreAvg'].toString()}'),
+                      Text(
+                        product['productName'] as String? ?? 'Unknown Product',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      Text('\₩${(product['price'] as num? ?? 0).toString()}'),
+                      Text('⭐ ${(product['reviewScoreAvg'] as num? ?? 0).toString()}'),
                     ],
                   ),
                 );
