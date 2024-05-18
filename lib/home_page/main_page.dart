@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zzero/category_page/category_page.dart';
+import 'package:zzero/category_page/cheese_page.dart';
 import 'package:zzero/components/Image_Slide.dart';
 import 'package:zzero/components/search_box.dart';
 
@@ -88,9 +89,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage(
-                                  sorting: '음료',
-                                )),
+                            builder: (context) => CheesePage()),
                       );
                     },
                   ),
