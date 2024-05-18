@@ -40,7 +40,7 @@ class _MainPageState extends State<MainPage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),
-          ),
+          ),//test
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.0), // 구분선 높이
             child: Container(
