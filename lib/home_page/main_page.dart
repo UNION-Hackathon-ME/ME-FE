@@ -72,6 +72,7 @@ class _MainPageState extends State<MainPage> {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
+                      fontFamily: "mainfont",
                     ),
                   ),
                 ),
@@ -195,6 +196,7 @@ class _MainPageState extends State<MainPage> {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
+                      fontFamily: "mainfont",
                     ),
                   ),
                 ),
