@@ -22,7 +22,7 @@ class CategoryTile extends StatelessWidget {
           Expanded(
             child: Image.asset(imagePath, fit: BoxFit.cover), // Use Image.asset for local images
           ),
-          Text(title, style: TextStyle(fontSize: 16)),
+          Text(title, style: TextStyle(fontSize: 16,fontFamily: 'subfont',)),
         ],
       ),
     );
