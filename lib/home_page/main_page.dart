@@ -82,8 +82,8 @@ class _MainPageState extends State<MainPage> {
                 crossAxisCount: 4, // 타일의 열 수 조정
                 children: <Widget>[
                   CategoryTile(
-                    imagePath: 'assets/images/drink.png', //사진 넣어주기
-                    title: '음료',
+                    imagePath: 'assets/images/cheese.png', //사진 넣어주기
+                    title: '치즈',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -95,8 +95,8 @@ class _MainPageState extends State<MainPage> {
                     },
                   ),
                   CategoryTile(
-                    imagePath: 'assets/images/icecream.png', //사진 넣어주기
-                    title: '아이스크림',
+                    imagePath: 'assets/images/dairy.png', //사진 넣어주기
+                    title: '유제품',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -108,8 +108,8 @@ class _MainPageState extends State<MainPage> {
                     },
                   ),
                   CategoryTile(
-                    imagePath: 'assets/images/chocolate.png', //사진 넣어주기
-                    title: '초콜릿',
+                    imagePath: 'assets/images/protein.png', //사진 넣어주기
+                    title: '프로틴',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -121,8 +121,8 @@ class _MainPageState extends State<MainPage> {
                     },
                   ),
                   CategoryTile(
-                    imagePath: 'assets/images/candy.png', //사진 넣어주기
-                    title: '젤리/사탕',
+                    imagePath: 'assets/images/bug.png', //사진 넣어주기
+                    title: '곤충',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -134,8 +134,8 @@ class _MainPageState extends State<MainPage> {
                     },
                   ),
                   CategoryTile(
-                    imagePath: 'assets/images/snack.png', //사진 넣어주기
-                    title: '과자',
+                    imagePath: 'assets/images/chicken.png', //사진 넣어주기
+                    title: '닭고기',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -147,8 +147,8 @@ class _MainPageState extends State<MainPage> {
                     },
                   ),
                   CategoryTile(
-                    imagePath: 'assets/images/bread.png', //사진 넣어주기
-                    title: '빵',
+                    imagePath: 'assets/images/cow.png', //사진 넣어주기
+                    title: '소고기',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -160,8 +160,8 @@ class _MainPageState extends State<MainPage> {
                     },
                   ),
                   CategoryTile(
-                    imagePath: 'assets/images/alchol.png', //사진 넣어주기
-                    title: '술',
+                    imagePath: 'assets/images/pig.png', //사진 넣어주기
+                    title: '돼지',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -173,8 +173,8 @@ class _MainPageState extends State<MainPage> {
                     },
                   ),
                   CategoryTile(
-                    imagePath: 'assets/images/etc.png', //사진 넣어주기
-                    title: '기타식품',
+                    imagePath: 'assets/images/fish.png', //사진 넣어주기
+                    title: '어패류',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -191,13 +191,18 @@ class _MainPageState extends State<MainPage> {
                 alignment: Alignment.centerLeft, // 왼쪽 정렬
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    "랭킹",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "mainfont",
-                    ),
+                  child: Row(
+                    children: [
+                      Container(height:35,child: Image.asset('assets/images/hot.png')),
+                      Text(
+                        "랭킹",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "mainfont",
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

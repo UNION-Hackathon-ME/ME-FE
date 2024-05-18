@@ -80,6 +80,10 @@ flutter:
     - family: mainfont
       fonts:
         - asset: assets/fonts/laundryOTF Bold.otf
+    - family: subfont
+      fonts:
+        - asset: assets/fonts/laundryOTF Regular.otf
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
