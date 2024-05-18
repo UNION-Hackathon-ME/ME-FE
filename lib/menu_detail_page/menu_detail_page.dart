@@ -209,7 +209,7 @@ class _MenuPageState extends State<MenuPage> {
                   Text(
                     '2개의 유의해야할 감미료가 포함되어 있어요!',
                     style: TextStyle(
-                        color: Color(0xFFFF6D2C),
+                        color: Color(0xFF5EA152),
                         fontSize: 16,
                         fontFamily: 'Pretendard',
                         fontWeight: FontWeight.w700),
@@ -624,7 +624,7 @@ class _MenuPageState extends State<MenuPage> {
                                       Text(
                                         '32',
                                         style: TextStyle(
-                                          color: Color(0xFFFF6D2C),
+                                          color: Color(0xFF5EA152),
                                           fontSize: 16,
                                           fontFamily: 'Pretendard',
                                           fontWeight: FontWeight.w600,
@@ -649,7 +649,7 @@ class _MenuPageState extends State<MenuPage> {
                                   height: 52,
                                   alignment: Alignment.center,
                                   decoration: ShapeDecoration(
-                                    color: Color(0xFFFF6D2C),
+                                    color: Color(0xFF5EA152),
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(4)),
                                   ),

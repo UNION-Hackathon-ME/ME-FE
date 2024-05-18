@@ -38,16 +38,20 @@ class _CategoryPageContaienrState extends State<CategoryPageContaienr> {
             ),
           ),
           const SizedBox(height: 5),
-          Text(
+          Container(
+            width: 110,
+            child:Text(
             '${widget.name}',
-            maxLines: 3,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign:TextAlign.left,
             style: TextStyle(
               color: Color(0xFF2C2C2C),
               fontSize: 14,
               fontFamily: 'Pretendard',
               fontWeight: FontWeight.w600,
             ),
-          ),
+          ),),
           Align(
             alignment: Alignment.topRight,
             child: Column(
@@ -81,21 +85,21 @@ class _CategoryPageContaienrState extends State<CategoryPageContaienr> {
                       ),
                     ),
                     SizedBox(width: 8),
-                    Icon(
-                      Icons.favorite,
-                      size: 12,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(width: 1),
-                    Text(
-                      '${Random().nextInt(50) + 50}',
-                      style: TextStyle(
-                        color: Color(0xFF949494),
-                        fontSize: 10,
-                        fontFamily: 'Pretendard',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
+                    // Icon(
+                    //   Icons.favorite,
+                    //   size: 12,
+                    //   color: Colors.grey,
+                    // ),
+                    // SizedBox(width: 1),
+                    // Text(
+                    //   '${Random().nextInt(50) + 50}',
+                    //   style: TextStyle(
+                    //     color: Color(0xFF949494),
+                    //     fontSize: 10,
+                    //     fontFamily: 'Pretendard',
+                    //     fontWeight: FontWeight.w400,
+                    //   ),
+                    // )
                   ],
                 )
               ],
