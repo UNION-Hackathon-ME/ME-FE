@@ -26,7 +26,7 @@ class _PorkPageState extends State<PorkPage> {
       var response = await http.get(Uri.parse('http://13.125.255.90:8080/api/product-list/pork'));
       if (response.statusCode == 200) {
         setState(() {
-          products = json.decode(response.body);
+          products = json.decode(utf8.decode(response.bodyBytes));
         });
       } else {
         throw Exception('Failed to load pork products with status: ${response.statusCode}');
