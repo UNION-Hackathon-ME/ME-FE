@@ -13,6 +13,7 @@ import '../category_page/chicken_page.dart';
 import '../category_page/dairy_page.dart';
 import '../category_page/protein_page.dart';
 import '../components/category_tile.dart';
+import '../my_page/my_page.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key? key}) : super(key: key);
@@ -48,7 +49,21 @@ class _MainPageState extends State<MainPage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),
-          ),//test
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyPage()),
+                  );
+                },
+                icon: Icon(
+                  Icons.menu,
+                  size: 30,
+                  color: Colors.black,
+                ))
+          ],
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.0), // 구분선 높이
             child: Container(
@@ -228,7 +243,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                           SizedBox(width: 11),
                           Text(
-                            '라라스윗 저당 말차 초코바',
+                            '풀무원 식물성 지구식단 런천미트 슬라이스',
                             style: TextStyle(
                               color: Color(0xFF414141),
                               fontSize: 16,
@@ -267,7 +282,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                           SizedBox(width: 11),
                           Text(
-                            '라라스윗 저당 생크림롤',
+                            '베지가든 떡갈비',
                             style: TextStyle(
                               color: Color(0xFF414141),
                               fontSize: 16,
@@ -306,7 +321,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                           SizedBox(width: 11),
                           Text(
-                            '라라스윗 초콜릿 모나카',
+                            '풀무원 식물성 지구식단 결이 다른 텐더 오리지널',
                             style: TextStyle(
                               color: Color(0xFF414141),
                               fontSize: 16,
@@ -334,7 +349,7 @@ class _MainPageState extends State<MainPage> {
             );
           },
           child: Icon(Icons.pets),  // 아이콘은 원하는 것으로 변경 가능
-          backgroundColor: Colors.green,
+          backgroundColor: Color(0xFF5EA152),
         ),
       ),
     );

@@ -12,14 +12,20 @@ class MyPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF7F7F7),
       appBar: AppBar(
-        backgroundColor: Color(0xFF5EA152),
-        elevation: 0,
         centerTitle: true,
-        title: Text("마이페이지", style: TextStyle(color: Color(0xFF2C2C2C), fontSize: 16.0)),
+        backgroundColor: const Color(0xFF5EA152),
+        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('마이페이지', style: TextStyle(fontSize: 20, fontFamily: 'mainfont', color: Colors.black)),
+            SizedBox(width: 30,)
+          ],
+        ),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
+          preferredSize: const Size.fromHeight(1.0),
           child: Container(
-            color: Color(0xFF5EA152),
+            color: const Color(0xFF5EA152),
             height: 1.0,
           ),
         ),
@@ -27,7 +33,6 @@ class MyPage extends StatelessWidget {
       body: Column(
         children: [
           _buildUserProfile(),
-          _buildInteractiveRow(context),
           _buildInformationSection(context),
         ],
       ),
