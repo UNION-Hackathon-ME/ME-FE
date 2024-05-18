@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zzero/category_page/category_page.dart';
 import 'package:zzero/category_page/cheese_page.dart';
@@ -66,13 +67,17 @@ class _MainPageState extends State<MainPage> {
                 alignment: Alignment.centerLeft, // 왼쪽 정렬
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    "카테고리",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "mainfont",
-                    ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "카테고리",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "mainfont",
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
