@@ -3,9 +3,7 @@ import 'package:zzero/category_page/category_page.dart';
 import 'package:zzero/category_page/cheese_page.dart';
 import 'package:zzero/components/Image_Slide.dart';
 import 'package:zzero/components/search_box.dart';
-
 import '../components/category_tile.dart';
-import '../my_page/my_page.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key? key}) : super(key: key);
