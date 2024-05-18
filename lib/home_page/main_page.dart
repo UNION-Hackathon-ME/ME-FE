@@ -191,13 +191,18 @@ class _MainPageState extends State<MainPage> {
                 alignment: Alignment.centerLeft, // 왼쪽 정렬
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    "랭킹",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "mainfont",
-                    ),
+                  child: Row(
+                    children: [
+                      Container(height:35,child: Image.asset('assets/images/hot.png')),
+                      Text(
+                        "랭킹",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "mainfont",
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
