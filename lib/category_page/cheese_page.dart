@@ -80,22 +80,39 @@ class _CheesePageState extends State<CheesePage> {
               itemBuilder: (BuildContext context, int index) {
                 var product = products[index];
                 return Card(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Image.network(
-                          product['productImage'] as String? ?? 'assets/default.png',
-                          fit: BoxFit.cover,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Image.network(
+                            product['productImage'] as String? ?? 'assets/default.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Text(
-                        product['productName'] as String? ?? 'Unknown Product',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      Text('\₩${(product['price'] as num? ?? 0).toString()}'),
-                      Text('⭐ ${(product['reviewScoreAvg'] as num? ?? 0).toString()}'),
-                    ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              product['productName'] as String? ?? 'Unknown Product',
+                              style: const TextStyle(fontFamily: 'subfont',fontSize: 16),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text('\₩${(product['price'] as num? ?? 0).toString()}',style: TextStyle(fontFamily: 'subfont',fontSize: 13)),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text('⭐ ${(product['reviewScoreAvg'] as num? ?? 0).toString()}',style: TextStyle(fontFamily: 'subfont',fontSize: 13),),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

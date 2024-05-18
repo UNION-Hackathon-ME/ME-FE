@@ -89,12 +89,25 @@ class _PorkPageState extends State<PorkPage> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      Text(
-                        product['productName'] as String? ?? 'Unknown Product',
-                        style: const TextStyle(fontSize: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            product['productName'] as String? ?? 'Unknown Product',
+                            style: const TextStyle(fontFamily: 'subfont',fontSize: 16),
+                          ),
+                        ],
                       ),
-                      Text('\₩${(product['price'] as num? ?? 0).toString()}'),
-                      Text('⭐ ${(product['reviewScoreAvg'] as num? ?? 0).toString()}'),
+                      Row(
+                        children: [
+                          Text('\₩${(product['price'] as num? ?? 0).toString()}',style: TextStyle(fontFamily: 'subfont',fontSize: 13)),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text('⭐ ${(product['reviewScoreAvg'] as num? ?? 0).toString()}',style: TextStyle(fontFamily: 'subfont',fontSize: 13),),
+                        ],
+                      ),
                     ],
                   ),
                 );
