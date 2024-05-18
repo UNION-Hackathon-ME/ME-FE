@@ -60,7 +60,7 @@ class MyPage extends StatelessWidget {
             ),
             SizedBox(width: 10),
             Text(
-              "이진우",
+              "User",
               // userInfo.userName,
               style: TextStyle(
                 fontSize: 20,

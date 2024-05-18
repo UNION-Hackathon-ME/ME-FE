@@ -96,8 +96,12 @@ class _BugPageState extends State<BugPage> {
                     itemCount: products.length,
                     itemBuilder: (BuildContext context, int index) {
                       var product = products[index];
+                      print(product);
                       return GestureDetector(
+                        key: ValueKey(product['productId']), // 고유 키 할당
                         onTap: () {
+                          print(product);
+                          print("Clicked product ID: ${product['productId']}");
                           Navigator.push(
                             context,
                             MaterialPageRoute(

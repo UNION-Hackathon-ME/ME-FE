@@ -23,8 +23,9 @@ class _MenuPageState extends State<MenuPage> {
     final response = await http.get(Uri.parse(
         'http://13.125.255.90:8080/api/product-detail?productId=${widget.productId}'));
 
-    // print('Response status: ${response.statusCode}');
+    print('${widget.productId}');
     print('Response body: ${response.body}');
+    print("URL: http://13.125.255.90:8080/api/product-detail?productId=${widget.productId}");
 
     if (response.statusCode == 200) {
       // 응답 데이터를 JSON으로 변환하여 Product 객체로 만들기
@@ -39,6 +40,8 @@ class _MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
+    print("MenuPage received productId: ${widget.productId}");
+
     //futureProducts = fetchProducts();
   }
 
