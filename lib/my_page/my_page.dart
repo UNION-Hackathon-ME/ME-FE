@@ -12,14 +12,14 @@ class MyPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF7F7F7),
       appBar: AppBar(
-        backgroundColor: Color(0xFFF7F7F7),
+        backgroundColor: Color(0xFF5EA152),
         elevation: 0,
         centerTitle: true,
         title: Text("마이페이지", style: TextStyle(color: Color(0xFF2C2C2C), fontSize: 16.0)),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Container(
-            color: Color(0xFFFF6D2C),
+            color: Color(0xFF5EA152),
             height: 1.0,
           ),
         ),

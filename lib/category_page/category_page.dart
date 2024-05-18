@@ -118,90 +118,90 @@ class _CategoryPageState extends State<CategoryPage> {
                 controller: TextEditingController(),
               ),
               SizedBox(height: 25),
-              Row(
-                children: [
-                  const SizedBox(width: 16),
-                  GestureDetector(
-                    onTap: () {
-                      isSugar = !isSugar;
-                      setState(() {});
-                    },
-                    child: Container(
-                      height: 32,
-                      width: 100,
-                      alignment: Alignment.center,
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                              width: 1,
-                              color:
-                                  isSugar ? Color(0xFFADD67A) : Colors.white),
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                            color: Color(0x19000000),
-                            blurRadius: 2,
-                            offset: Offset(0, 2),
-                            spreadRadius: 0,
-                          )
-                        ],
-                      ),
-                      child: Text(
-                        '제로 슈거',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF414141),
-                          fontSize: 16,
-                          fontFamily: 'Pretendard',
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () {
-                      isKcal = !isKcal;
-                      setState(() {});
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 32,
-                      width: 100,
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                              width: 1,
-                              color: isKcal ? Color(0xFFFF93AD) : Colors.white),
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                            color: Color(0x19000000),
-                            blurRadius: 2,
-                            offset: Offset(0, 2),
-                            spreadRadius: 0,
-                          )
-                        ],
-                      ),
-                      child: const Text(
-                        '제로 칼로리',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF414141),
-                          fontSize: 16,
-                          fontFamily: 'Pretendard',
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 20),
+              // Row(
+              //   children: [
+              //     const SizedBox(width: 16),
+              //     GestureDetector(
+              //       onTap: () {
+              //         isSugar = !isSugar;
+              //         setState(() {});
+              //       },
+              //       child: Container(
+              //         height: 32,
+              //         width: 100,
+              //         alignment: Alignment.center,
+              //         decoration: ShapeDecoration(
+              //           color: Colors.white,
+              //           shape: RoundedRectangleBorder(
+              //             side: BorderSide(
+              //                 width: 1,
+              //                 color:
+              //                     isSugar ? Color(0xFFADD67A) : Colors.white),
+              //             borderRadius: BorderRadius.circular(999),
+              //           ),
+              //           shadows: const [
+              //             BoxShadow(
+              //               color: Color(0x19000000),
+              //               blurRadius: 2,
+              //               offset: Offset(0, 2),
+              //               spreadRadius: 0,
+              //             )
+              //           ],
+              //         ),
+              //         child: Text(
+              //           '제로 슈거',
+              //           textAlign: TextAlign.center,
+              //           style: TextStyle(
+              //             color: Color(0xFF414141),
+              //             fontSize: 16,
+              //             fontFamily: 'Pretendard',
+              //             fontWeight: FontWeight.w600,
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //     const SizedBox(width: 8),
+              //     GestureDetector(
+              //       onTap: () {
+              //         isKcal = !isKcal;
+              //         setState(() {});
+              //       },
+              //       child: Container(
+              //         alignment: Alignment.center,
+              //         height: 32,
+              //         width: 100,
+              //         decoration: ShapeDecoration(
+              //           color: Colors.white,
+              //           shape: RoundedRectangleBorder(
+              //             side: BorderSide(
+              //                 width: 1,
+              //                 color: isKcal ? Color(0xFFFF93AD) : Colors.white),
+              //             borderRadius: BorderRadius.circular(999),
+              //           ),
+              //           shadows: const [
+              //             BoxShadow(
+              //               color: Color(0x19000000),
+              //               blurRadius: 2,
+              //               offset: Offset(0, 2),
+              //               spreadRadius: 0,
+              //             )
+              //           ],
+              //         ),
+              //         child: const Text(
+              //           '제로 칼로리',
+              //           textAlign: TextAlign.center,
+              //           style: TextStyle(
+              //             color: Color(0xFF414141),
+              //             fontSize: 16,
+              //             fontFamily: 'Pretendard',
+              //             fontWeight: FontWeight.w600,
+              //           ),
+              //         ),
+              //       ),
+              //     )
+              //   ],
+              // ),
+              // const SizedBox(height: 20),
               Container(
                   alignment: Alignment.topCenter,
                   child: ListView.builder(
@@ -244,7 +244,8 @@ class _CategoryPageState extends State<CategoryPage> {
                       }
                       return Container();
                     },
-                  )),
+                  )
+              ),
             ],
           ),
         ),

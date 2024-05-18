@@ -33,7 +33,7 @@ class _MyReviewState extends State<MyReview> {
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0), // 구분선 높이
           child: Container(
-            color: Color(0xFFFF6D2C), // 구분선 색상 설정해주기
+            color: Color(0xFF5EA152), // 구분선 색상 설정해주기
             height: 1.0,
           ),
         ),

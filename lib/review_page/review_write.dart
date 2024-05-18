@@ -24,7 +24,7 @@ class _ReviewWriteState extends State<ReviewWrite> {
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Container(
-            color: Color(0xFFFF6D2C),
+            color: Color(0xFF5EA152),
             height: 1.0,
           ),
         ),
@@ -194,7 +194,7 @@ class _ReviewWriteState extends State<ReviewWrite> {
         child: ElevatedButton(
           onPressed: submitReview,
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFFFF6D2C),
+            backgroundColor: Color(0xFF5EA152),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
