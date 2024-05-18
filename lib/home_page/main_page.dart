@@ -54,7 +54,7 @@ class _MainPageState extends State<MainPage> {
                   size: 30,
                   color: Colors.grey,
                 ))
-          ],//git
+          ],
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.0), // 구분선 높이
             child: Container(
