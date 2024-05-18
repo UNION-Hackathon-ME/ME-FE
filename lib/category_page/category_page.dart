@@ -20,7 +20,6 @@ class _CategoryPageState extends State<CategoryPage> {
       "name": "실론티 레몬 제로 ",
       "url": "https://zzero-bucket.s3.ap-northeast-2.amazonaws.com/9.jpg"
     },
-    // test
     {
       "name": "환타 제로 ",
       "url": "https://zzero-bucket.s3.ap-northeast-2.amazonaws.com/images.jpg"

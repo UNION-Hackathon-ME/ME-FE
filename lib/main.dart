@@ -6,6 +6,8 @@ import 'package:zzero/menu_detail_page/menu_detail_page.dart';
 import 'package:zzero/my_page/my_page.dart';
 import 'package:zzero/review_page/review_write.dart';
 import 'home_page/main_page.dart';
+import 'menu_detail_page/menu_detail_page.dart';
+import 'category_page/category_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +16,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,color: Colors.white, home: MainPage());
+    return MaterialApp(debugShowCheckedModeBanner: false,color: Colors.white, home: MenuPage());
   }
 }

@@ -33,10 +33,10 @@ class _ReviewWriteState extends State<ReviewWrite> {
         child: Column(
           children: [
             _buildProductHeader(),
-            SizedBox(height: 8),
-            _buildEmojiSelector(),
-            SizedBox(height: 8),
-            _buildTagSelector(),
+            // SizedBox(height: 8),
+            // _buildEmojiSelector(),
+            // SizedBox(height: 8),
+            // _buildTagSelector(),
             SizedBox(height: 8),
             _buildReviewInput(),
             SizedBox(height: 16),
@@ -77,74 +77,74 @@ class _ReviewWriteState extends State<ReviewWrite> {
     );
   }
 
-  Widget _buildEmojiSelector() {
-    List<String> faces = ['assets/images/face3.png', 'assets/images/face2.png', 'assets/images/face1.png'];
-    return Container(
-      height: 134,
-      width: double.infinity,
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Text("어떠셨어요?", style: TextStyle(fontSize: 16.0, color: Color(0xFF2C2C2C))),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(faces.length, (index) {
-              return GestureDetector(
-                onTap: () => setState(() => selectedEmojiIndex = index),
-                child: Opacity(
-                  opacity: selectedEmojiIndex == index ? 1.0 : 0.5,
-                  child: Image.asset(faces[index], width: 56, height: 56),
-                ),
-              );
-            }),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTagSelector() {
-    List<String> tags = ['#맛 보장', '#다이어트 보장'];
-    return Container(
-      height: 134,
-      width: double.infinity,
-      color: Colors.white,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0,bottom: 28.0),
-            child: Text(
-              "해시태그를 선택해주세요",
-              style: TextStyle(color: Color(0xFF2C2C2C), fontSize: 16.0),
-            ),
-          ),
-          Wrap(
-            spacing: 20.0, // 해시태그 사이의 수평 간격을 20으로 설정
-            children: List.generate(tags.length, (index) {
-              return ChoiceChip(
-                label: Text(tags[index]),
-                selected: selectedTag == tags[index],
-                onSelected: (selected) {
-                  setState(() {
-                    if (selected) {
-                      selectedTag = tags[index];
-                    } else {
-                      selectedTag = null;
-                    }
-                  });
-                },
-              );
-            }),
-          ),
-        ],
-      ),
-
-    );
-  }
+  // Widget _buildEmojiSelector() {
+  //   List<String> faces = ['assets/images/face3.png', 'assets/images/face2.png', 'assets/images/face1.png'];
+  //   return Container(
+  //     height: 134,
+  //     width: double.infinity,
+  //     color: Colors.white,
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: [
+  //         Padding(
+  //           padding: const EdgeInsets.only(top: 16.0),
+  //           child: Text("어떠셨어요?", style: TextStyle(fontSize: 16.0, color: Color(0xFF2C2C2C))),
+  //         ),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: List.generate(faces.length, (index) {
+  //             return GestureDetector(
+  //               onTap: () => setState(() => selectedEmojiIndex = index),
+  //               child: Opacity(
+  //                 opacity: selectedEmojiIndex == index ? 1.0 : 0.5,
+  //                 child: Image.asset(faces[index], width: 56, height: 56),
+  //               ),
+  //             );
+  //           }),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+  //
+  // Widget _buildTagSelector() {
+  //   List<String> tags = ['#맛 보장', '#다이어트 보장'];
+  //   return Container(
+  //     height: 134,
+  //     width: double.infinity,
+  //     color: Colors.white,
+  //     child: Column(
+  //       children: [
+  //         Padding(
+  //           padding: const EdgeInsets.only(top: 16.0,bottom: 28.0),
+  //           child: Text(
+  //             "해시태그를 선택해주세요",
+  //             style: TextStyle(color: Color(0xFF2C2C2C), fontSize: 16.0),
+  //           ),
+  //         ),
+  //         Wrap(
+  //           spacing: 20.0, // 해시태그 사이의 수평 간격을 20으로 설정
+  //           children: List.generate(tags.length, (index) {
+  //             return ChoiceChip(
+  //               label: Text(tags[index]),
+  //               selected: selectedTag == tags[index],
+  //               onSelected: (selected) {
+  //                 setState(() {
+  //                   if (selected) {
+  //                     selectedTag = tags[index];
+  //                   } else {
+  //                     selectedTag = null;
+  //                   }
+  //                 });
+  //               },
+  //             );
+  //           }),
+  //         ),
+  //       ],
+  //     ),
+  //
+  //   );
+  // }
 
   Widget _buildReviewInput() {
     return Container(
@@ -154,6 +154,7 @@ class _ReviewWriteState extends State<ReviewWrite> {
       color: Colors.white,
       child: Column(
         children: [
+          SizedBox(height: 15),
           Row(
             children: [
               Text(
