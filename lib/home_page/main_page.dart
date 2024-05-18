@@ -17,9 +17,9 @@ class _MainPageState extends State<MainPage> {
   final TextEditingController _searchController = TextEditingController();
 
   final List<String> imageUrls = [
-    'assets/images/ad1.png', // 로컬 이미지 자산 경로 예시
-    'assets/images/ad2.png',
-    'assets/images/ad3.png',
+    'assets/images/ad1.jpg', // 로컬 이미지 자산 경로 예시
+    'assets/images/ad2.jpg',
+    'assets/images/ad3.jpg',
   ];
 
   @override
@@ -29,36 +29,22 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         backgroundColor: const Color(0xFFF7F7F7),
         appBar: AppBar(
-          backgroundColor: Color(0xFFF7F7F7),
+          centerTitle: true,
+          backgroundColor: Color(0xFF5EA152),
           elevation: 0,
-          leading: Container(
+          title: Container(
             width: 110,
-            height: 28.005, //로고 사이즈 임의 설정
-            child: Image.asset('assets/images/logo.png',fit: BoxFit.contain,),
+            height: 50, //로고 사이즈 임의 설정
+            child: Image.asset('assets/images/moo.png',fit: BoxFit.contain,),
             margin: const EdgeInsets.all(5),
             decoration: BoxDecoration(
-              // color: Colors.grey, //나중에 제거
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyPage()),
-                  );
-                },
-                icon: Icon(
-                  Icons.account_circle_outlined,
-                  size: 30,
-                  color: Colors.grey,
-                ))
-          ],//test
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.0), // 구분선 높이
             child: Container(
-              color: Color(0xFFFF6D2C), // 구분선 색상 설정해주기
+              color: Color(0xFF5EA152), // 구분선 색상 설정해주기
               height: 1.0,
             ),
           ),
