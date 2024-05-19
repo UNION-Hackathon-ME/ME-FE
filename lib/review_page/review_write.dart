@@ -1,7 +1,12 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../my_review_page.dart';
 
 class ReviewWrite extends StatefulWidget {
+  final String productId;
+
+  ReviewWrite({required this.productId});
 
   @override
   State<ReviewWrite> createState() => _ReviewWriteState();
@@ -11,6 +16,34 @@ class _ReviewWriteState extends State<ReviewWrite> {
   int? selectedEmojiIndex; // For emoji selection
   String? selectedTag; // For tag selection
   final TextEditingController reviewController = TextEditingController(); // For review input
+  double reviewScore = 0.0; // Example score, replace with actual user input if necessary
+
+  String? productImage;
+  String? productTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchProductDetails();
+  }
+
+  Future<void> fetchProductDetails() async {
+    final response = await http.get(
+      Uri.parse("http://54.180.89.118:8080/api/product-detail?productId=${widget.productId}"),
+    );
+    ////"http://54.180.89.118:8080/api/product-detail?productId=${widget.productId}"
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      setState(() {
+        productImage = data['productImage'];
+        productTitle = data['productTitle'];
+      });
+    } else {
+      // Handle the error accordingly
+      throw Exception('Failed to load product details');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +66,6 @@ class _ReviewWriteState extends State<ReviewWrite> {
         child: Column(
           children: [
             _buildProductHeader(),
-            // SizedBox(height: 8),
-            // _buildEmojiSelector(),
-            // SizedBox(height: 8),
-            // _buildTagSelector(),
             SizedBox(height: 8),
             _buildReviewInput(),
             SizedBox(height: 16),
@@ -56,7 +85,9 @@ class _ReviewWriteState extends State<ReviewWrite> {
         padding: const EdgeInsets.only(left: 16.0, top: 15, bottom: 15),
         child: Row(
           children: [
-            Image.network('https://cdn.e2news.com/news/photo/202402/305847_205316_4627.jpg'),
+            productImage != null
+                ? Image.network(productImage!)
+                : CircularProgressIndicator(),
             SizedBox(width: 8),
             Expanded(
               child: Padding(
@@ -65,8 +96,8 @@ class _ReviewWriteState extends State<ReviewWrite> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("라라스윗", style: TextStyle(fontSize: 14, color: Color(0xFF6B6B6B))),
-                    Text("라라스윗 저당 말차 초코바", style: TextStyle(fontSize: 14, color: Color(0xFF2C2C2C))),
+                    // Text("라라스윗", style: TextStyle(fontSize: 14, color: Color(0xFF6B6B6B))),
+                    Text(productTitle ?? "Loading...", style: TextStyle(fontSize: 14, color: Color(0xFF2C2C2C))),
                   ],
                 ),
               ),
@@ -76,75 +107,6 @@ class _ReviewWriteState extends State<ReviewWrite> {
       ),
     );
   }
-
-  // Widget _buildEmojiSelector() {
-  //   List<String> faces = ['assets/images/face3.png', 'assets/images/face2.png', 'assets/images/face1.png'];
-  //   return Container(
-  //     height: 134,
-  //     width: double.infinity,
-  //     color: Colors.white,
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: [
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 16.0),
-  //           child: Text("어떠셨어요?", style: TextStyle(fontSize: 16.0, color: Color(0xFF2C2C2C))),
-  //         ),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: List.generate(faces.length, (index) {
-  //             return GestureDetector(
-  //               onTap: () => setState(() => selectedEmojiIndex = index),
-  //               child: Opacity(
-  //                 opacity: selectedEmojiIndex == index ? 1.0 : 0.5,
-  //                 child: Image.asset(faces[index], width: 56, height: 56),
-  //               ),
-  //             );
-  //           }),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-  //
-  // Widget _buildTagSelector() {
-  //   List<String> tags = ['#맛 보장', '#다이어트 보장'];
-  //   return Container(
-  //     height: 134,
-  //     width: double.infinity,
-  //     color: Colors.white,
-  //     child: Column(
-  //       children: [
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 16.0,bottom: 28.0),
-  //           child: Text(
-  //             "해시태그를 선택해주세요",
-  //             style: TextStyle(color: Color(0xFF2C2C2C), fontSize: 16.0),
-  //           ),
-  //         ),
-  //         Wrap(
-  //           spacing: 20.0, // 해시태그 사이의 수평 간격을 20으로 설정
-  //           children: List.generate(tags.length, (index) {
-  //             return ChoiceChip(
-  //               label: Text(tags[index]),
-  //               selected: selectedTag == tags[index],
-  //               onSelected: (selected) {
-  //                 setState(() {
-  //                   if (selected) {
-  //                     selectedTag = tags[index];
-  //                   } else {
-  //                     selectedTag = null;
-  //                   }
-  //                 });
-  //               },
-  //             );
-  //           }),
-  //         ),
-  //       ],
-  //     ),
-  //
-  //   );
-  // }
 
   Widget _buildReviewInput() {
     return Container(
@@ -206,12 +168,33 @@ class _ReviewWriteState extends State<ReviewWrite> {
     );
   }
 
-  void submitReview() {
-    // 여기서 서버로 리뷰 데이터를 전송하는 로직을 구현합니다.
-    // 데이터 전송이 성공하면 아래의 페이지 전환 코드를 실행합니다.
-    print('Emoji Index: $selectedEmojiIndex, Tag: $selectedTag, Review: ${reviewController.text}');
+  Future<void> submitReview() async {
+    final response = await http.post(
+      //http://54.180.89.118:8080/api/product-detail/review
+      Uri.parse('http://54.180.89.118:8080/api/product-detail/review'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'productId': widget.productId,
+        'score': reviewScore, // Replace with actual user input if necessary
+        'comment': reviewController.text,
+      }),
+    );
 
-    // 데이터 전송 후 MyReview 페이지로 이동
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MyReview()));
+    if (response.statusCode == 200) {
+      // Data sent successfully, navigate to MyReview page
+      Navigator.push(context, MaterialPageRoute(builder: (context) => MyReview()));
+    } else {
+      // Handle the error accordingly
+      throw Exception('Failed to submit review');
+    }
   }
 }
+//   void submitReview() {
+//     // 여기서 서버로 리뷰 데이터를 전송하는 로직을 구현합니다.
+//     // 데이터 전송이 성공하면 아래의 페이지 전환 코드를 실행합니다.
+//     print('Emoji Index: $selectedEmojiIndex, Tag: $selectedTag, Review: ${reviewController.text}');
+//
+//     // 데이터 전송 후 MyReview 페이지로 이동
+//     Navigator.push(context, MaterialPageRoute(builder: (context) => MyReview()));
+//   }
+// }

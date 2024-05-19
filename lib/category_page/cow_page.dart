@@ -25,7 +25,7 @@ class _BeefPageState extends State<BeefPage> {
   Future<void> fetchProducts() async {
     try {
       var response = await http
-          .get(Uri.parse('http://13.125.255.90:8080/api/product-list/beef'));
+          .get(Uri.parse('http://54.180.89.118:8080/api/product-list/beef'));
       if (response.statusCode == 200) {
         setState(() {
           products = json.decode(utf8.decode(response.bodyBytes));
@@ -118,6 +118,7 @@ class _BeefPageState extends State<BeefPage> {
                                     Text(
                                       product['productName'] as String? ??
                                           'Unknown Product',
+                                      overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
                                           fontFamily: 'subfont', fontSize: 16),
                                     ),

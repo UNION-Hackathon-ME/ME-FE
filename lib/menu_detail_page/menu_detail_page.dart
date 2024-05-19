@@ -21,11 +21,11 @@ class _MenuPageState extends State<MenuPage> {
   Future<Product> fetchProducts() async {
     // 서버에서 데이터를 가져오는 비동기 요청
     final response = await http.get(Uri.parse(
-        'http://13.125.255.90:8080/api/product-detail?productId=${widget.productId}'));
+        'http://54.180.89.118:8080/api/product-detail?productId=${widget.productId}'));
 
-    print('${widget.productId}');
-    print('Response body: ${response.body}');
-    print("URL: http://13.125.255.90:8080/api/product-detail?productId=${widget.productId}");
+    // print('${widget.productId}');
+    // print('Response body: ${response.body}');
+    // print("URL: http://54.180.89.118:8080/api/product-detail?productId=${widget.productId}");
 
     if (response.statusCode == 200) {
       // 응답 데이터를 JSON으로 변환하여 Product 객체로 만들기
@@ -40,7 +40,7 @@ class _MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    print("MenuPage received productId: ${widget.productId}");
+    // print("MenuPage received productId: ${widget.productId}");
 
     //futureProducts = fetchProducts();
   }
@@ -260,7 +260,7 @@ class _MenuPageState extends State<MenuPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ReviewWrite(),
+                              builder: (context) => ReviewWrite(productId: product.productId),
                             ));
                       },
                       child: Container(

@@ -24,7 +24,7 @@ class _BugPageState extends State<BugPage> {
   Future<void> fetchProducts() async {
     try {
       var response = await http
-          .get(Uri.parse('http://13.125.255.90:8080/api/product-list/insect'));
+          .get(Uri.parse('http://54.180.89.118:8080/api/product-list/insect'));
       print('Response body: ${response.body}');
 
       if (response.statusCode == 200) {
